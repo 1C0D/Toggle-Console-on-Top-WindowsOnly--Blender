@@ -1,7 +1,7 @@
 bl_info = {
     "name": "toggle console on top",
     "author": "1C0D, HerminOs",
-    "version": (1, 1, 0),
+    "version": (1, 1, 1),
     "blender": (2, 90, 0),
     "location": "Window menu",
     "description": "Always open system console on top",
@@ -32,17 +32,19 @@ class TOGGLE_OT_console_on_top(bpy.types.Operator):
         GetConsoleWindow = windll.kernel32.GetConsoleWindow
         ShowWindow = windll.user32.ShowWindow
         SwitchToThisWindow = windll.user32.SwitchToThisWindow
+        MakeActive = windll.user32.SetActiveWindow
         IsWindowVisible = windll.user32.IsWindowVisible
         hWnd = GetConsoleWindow()
 
         if self.open_console:
             if IsWindowVisible(hWnd):
                 SwitchToThisWindow(hWnd, True) #on Top
+                MakeActive(hWnd)
             else:
                 ShowWindow(hWnd, 5) # SW_SHOW
                 SwitchToThisWindow(hWnd, True) #on Top
         else:
-            if IsWindowVisible(hWnd):
+            # if IsWindowVisible(hWnd):
                 ShowWindow(hWnd, 0) # SW_HIDE
         return {'FINISHED'}
 
