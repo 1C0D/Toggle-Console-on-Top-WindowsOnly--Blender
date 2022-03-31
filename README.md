@@ -1,10 +1,10 @@
-# Toggle-Console-on-Top-WindowsOnly-Blender
+# Toggle-Console-on-Top-WindowsOnly-Blender addon
 toggle the window console and be sure it's opening on top!  
 in the Window Menu > Toggle Console On Top  
 there you can add a shortcut ALT+F1 should be ok
 
-# Toggle-Always_on_top
-you can add this script in your menu start (command shell:startup)  
+# Always_on_top
+you can add this script (alwaysOnTop.ahk) in your menu start (command shell:startup)  
 
 PRESS ALT+F12 to pin unpin, always on top, the Windows console (the blender one or not!) (marked then ¤¤¤¤¤ PINNED ¤¤¤¤¤)  
 the console must just be opened (not needeed to be active(to click on it))
