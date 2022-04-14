@@ -1,7 +1,7 @@
 bl_info = {
     "name": "toggle console on top",
     "author": "1C0D, HerminOs",
-    "version": (1, 1, 1),
+    "version": (1, 1, 2),
     "blender": (2, 90, 0),
     "location": "Window menu",
     "description": "Always open system console on top",
@@ -16,7 +16,6 @@ thanks to ErminOs
 
 """
 
-import bpy
 import bpy
 from ctypes import windll
 
@@ -45,7 +44,7 @@ class TOGGLE_OT_console_on_top(bpy.types.Operator):
                 SwitchToThisWindow(hWnd, True) #on Top
         else:
             # if IsWindowVisible(hWnd):
-                ShowWindow(hWnd, 0) # SW_HIDE
+            ShowWindow(hWnd, 0) # SW_HIDE
         return {'FINISHED'}
 
 def draw(self, context):
