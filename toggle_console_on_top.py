@@ -16,6 +16,7 @@ thanks to ErminOs
 
 """
 
+import os
 import bpy
 from ctypes import windll
 
@@ -47,6 +48,21 @@ class TOGGLE_OT_console_on_top(bpy.types.Operator):
             ShowWindow(hWnd, 0) # SW_HIDE
         return {'FINISHED'}
 
+    
+class CONSOLE_CLEAR_OT_clear(bpy.types.Operator):
+    bl_idname = "consoleclear.clear"
+    bl_label = "Console Clear"
+    bl_description = "This operator clears the system console."
+    bl_options = {"REGISTER"}
+
+    def execute(self, context):
+        if os.name == "nt":
+            os.system("cls") 
+        else:
+            os.system("clear") 
+        return {"FINISHED"}    
+    
+    
 def draw(self, context):
     layout = self.layout
     console_toggle = "wm.console_toggle_on_top"
@@ -54,13 +70,16 @@ def draw(self, context):
     ops.open_console=True
     ops = layout.operator(console_toggle, text="Console Off")
     ops.open_console=False
-
+    layout.operator(CONSOLE_CLEAR_OT_clear.bl_idname)
+    
 def register():
     bpy.utils.register_class(TOGGLE_OT_console_on_top)
+    bpy.utils.register_class(CONSOLE_CLEAR_OT_clear)
     bpy.types.TOPBAR_MT_window.append(draw)
 
 
 def unregister():
     bpy.utils.unregister_class(TOGGLE_OT_console_on_top)
+    bpy.utils.unregister_class(CONSOLE_CLEAR_OT_clear)
     bpy.types.TOPBAR_MT_window.remove(draw)
 
